@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # PostgreSQL — پایگاه داده اصلی
+  postgres:
+    image: postgres:16-alpine
+    container_name: gold-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: golduser
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-goldpass123}
+      POSTGRES_DB: goldplatform
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - gold-network
+
+  # Redis — کش و صف
+  redis:
+    image: redis:7-alpine
+    container_name: gold-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - gold-network
+
+  # Backend API (NestJS)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gold-backend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://golduser:${DB_PASSWORD:-goldpass123}@postgres:5432/goldplatform
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET:-your-super-secret-key-change-this}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-your-refresh-secret-change-this}
+      - KAVENEGAR_API_KEY=${KAVENEGAR_API_KEY:-}
+      - ZARINPAL_MERCHANT=${ZARINPAL_MERCHANT:-}
+      - ZARINPAL_SANDBOX=true
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - gold-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # Frontend (Next.js)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: gold-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+      - NODE_ENV=production
+    depends_on:
+      - backend
+    networks:
+      - gold-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  gold-network:
+    driver: bridge
