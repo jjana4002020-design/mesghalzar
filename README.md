@@ -93,6 +93,7 @@ npx prisma migrate dev --name init
 | Cache | Redis 7 |
 | Auth | JWT + OTP (Kavenegar) |
 | Payment | Zarinpal + IDPay |
+ Deployed via GitHub Actions
 | Deploy | Docker, Nginx, Certbot |
 
 ## مجوز
