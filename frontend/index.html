@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مثقال زر | خرید و فروش آنلاین طلا</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{--gold:#ffd700;--gold-dark:#b8860b;--bg:#0f0f1a;--bg-light:#1a1a2e;--bg-card:rgba(255,255,255,0.05);--text:#fff;--text-muted:#a0a0b0;--success:#00d084;--danger:#ff4757}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.navbar{background:rgba(15,15,26,0.95);backdrop-filter:blur(10px);padding:15px 0;position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid rgba(255,215,0,0.1)}
+.nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
+.logo{font-size:1.8rem;color:var(--gold);font-weight:bold;text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;transition:color 0.3s;font-size:0.95rem}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;padding:10px 25px;border-radius:25px;text-decoration:none;font-weight:bold}
+.menu-toggle{display:none;color:var(--gold);font-size:1.5rem;cursor:pointer}
+.hero{margin-top:80px;padding:60px 20px;text-align:center;background:linear-gradient(180deg,var(--bg-light) 0%,var(--bg) 100%)}
+.hero h1{font-size:2.5rem;margin-bottom:10px}
+.hero-subtitle{color:var(--text-muted);margin-bottom:40px;font-size:1.1rem}
+.price-display{background:var(--bg-card);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:40px;max-width:600px;margin:0 auto 30px}
+.price-label{color:var(--text-muted);font-size:1rem;margin-bottom:10px}
+.price-value{font-size:3.5rem;color:var(--gold);font-weight:bold;direction:ltr;display:inline-block}
+.price-unit{font-size:1.2rem;color:var(--text-muted)}
+.price-change{margin-top:15px;font-size:1.1rem}
+.price-change.up{color:var(--success)}.price-change.down{color:var(--danger)}
+.price-stats{display:flex;justify-content:center;gap:40px;margin-top:20px;flex-wrap:wrap}
+.price-stat{text-align:center}
+.price-stat-label{color:var(--text-muted);font-size:0.85rem}
+.price-stat-value{font-size:1.1rem;font-weight:bold}
+.time-filters{display:flex;justify-content:center;gap:10px;margin:20px 0}
+.time-filter{background:var(--bg-card);border:1px solid rgba(255,215,0,0.2);color:var(--text);padding:8px 20px;border-radius:20px;cursor:pointer;transition:all 0.3s;font-family:inherit}
+.time-filter.active,.time-filter:hover{background:var(--gold);color:#000}
+.chart-container{max-width:800px;margin:30px auto;height:300px;background:var(--bg-card);border-radius:15px;padding:20px;border:1px solid rgba(255,215,0,0.1)}
+.calculator-section{padding:60px 20px;max-width:800px;margin:0 auto}
+.section-title{text-align:center;font-size:2rem;margin-bottom:40px;color:var(--gold)}
+.calc-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:30px}
+.calc-tab{background:var(--bg-card);border:1px solid rgba(255,215,0,0.2);color:var(--text);padding:12px 40px;border-radius:10px;cursor:pointer;font-size:1.1rem;transition:all 0.3s;font-family:inherit}
+.calc-tab.active{background:var(--gold);color:#000;font-weight:bold}
+.calc-box{background:var(--bg-card);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:40px}
+.calc-input-group{margin-bottom:25px}
+.calc-input-group label{display:block;margin-bottom:10px;color:var(--text-muted)}
+.calc-input{width:100%;padding:15px;border-radius:10px;border:1px solid rgba(255,215,0,0.3);background:rgba(0,0,0,0.3);color:var(--text);font-size:1.2rem;direction:ltr;font-family:inherit}
+.calc-result{background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(184,134,11,0.1));border:1px solid var(--gold);border-radius:15px;padding:25px;text-align:center;margin-top:20px}
+.calc-result-label{color:var(--text-muted);margin-bottom:5px}
+.calc-result-value{font-size:2rem;color:var(--gold);font-weight:bold}
+.calc-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;border:none;border-radius:10px;font-size:1.2rem;font-weight:bold;cursor:pointer;margin-top:20px;font-family:inherit;transition:transform 0.2s}
+.calc-btn:hover{transform:scale(1.02)}
+.stats-section{padding:60px 20px;background:var(--bg-light)}
+.stats-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
+.stat-card{background:var(--bg-card);border:1px solid rgba(255,215,0,0.1);border-radius:15px;padding:30px;text-align:center;transition:transform 0.3s,border-color 0.3s}
+.stat-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.3)}
+.stat-icon{font-size:2.5rem;color:var(--gold);margin-bottom:15px}
+.stat-number{font-size:2rem;font-weight:bold;color:var(--gold)}
+.stat-label{color:var(--text-muted);margin-top:5px}
+.benefits-section{padding:60px 20px;max-width:1000px;margin:0 auto}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:40px}
+.benefit-card{background:var(--bg-card);border-radius:15px;padding:35px;border:1px solid rgba(255,215,0,0.1);transition:transform 0.3s}
+.benefit-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.3)}
+.benefit-icon{font-size:2.5rem;color:var(--gold);margin-bottom:15px}
+.benefit-title{font-size:1.3rem;margin-bottom:10px}
+.benefit-desc{color:var(--text-muted);line-height:1.8}
+.steps-section{padding:60px 20px;background:var(--bg-light)}
+.steps-container{max-width:1000px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
+.step-card{text-align:center;padding:30px;position:relative}
+.step-number{width:50px;height:50px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.3rem;margin:0 auto 15px}
+.step-title{font-size:1.2rem;margin-bottom:10px}
+.step-desc{color:var(--text-muted);font-size:0.95rem}
+.faq-section{padding:60px 20px;max-width:800px;margin:0 auto}
+.faq-item{background:var(--bg-card);border:1px solid rgba(255,215,0,0.1);border-radius:10px;margin-bottom:15px;overflow:hidden;transition:border-color 0.3s}
+.faq-item:hover{border-color:rgba(255,215,0,0.3)}
+.faq-question{padding:20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:bold}
+.faq-answer{padding:0 20px 20px;color:var(--text-muted);display:none;line-height:1.8}
+.faq-item.active .faq-answer{display:block}
+.faq-item.active .faq-icon{transform:rotate(180deg)}
+.faq-icon{transition:transform 0.3s;color:var(--gold)}
+.footer{background:var(--bg-light);border-top:1px solid rgba(255,215,0,0.1);padding:40px 20px;text-align:center;color:var(--text-muted)}
+.footer-links{display:flex;justify-content:center;gap:30px;margin-bottom:20px;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);text-decoration:none;transition:color 0.3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-social{margin:20px 0}
+.footer-social a{color:var(--text-muted);font-size:1.5rem;margin:0 10px;transition:color 0.3s}
+.footer-social a:hover{color:var(--gold)}
+@media(max-width:768px){.nav-links{display:none}.menu-toggle{display:block}.hero h1{font-size:1.8rem}.price-value{font-size:2.5rem}.stats-grid{grid-template-columns:1fr 1fr}.benefits-grid{grid-template-columns:1fr}.calc-tabs{flex-direction:column}.calc-tab{width:100%}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-container">
+<a href="#" class="logo"><i class="fas fa-coins"></i>مثقال زر</a>
+<ul class="nav-links"><li><a href="#price">قیمت لحظه‌ای</a></li><li><a href="#calculator">ماشین‌حساب</a></li><li><a href="#benefits">مزایا</a></li><li><a href="#steps">نحوه خرید</a></li><li><a href="#faq">سوالات</a></li></ul>
+<a href="#calculator" class="nav-btn">شروع کنید</a>
+<i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
+</div>
+</nav>
+
+<section class="hero" id="price">
+<h1>💰 قیمت لحظه‌ای طلا</h1>
+<p class="hero-subtitle">خرید و فروش آنلاین طلای ۱۸ عیار بدون اجرت</p>
+<div class="price-display">
+<div class="price-label">قیمت ۱ گرم طلای ۱۸ عیار</div>
+<div class="price-value loading-pulse" id="goldPrice">---</div>
+<div class="price-unit">ریال</div>
+<div class="price-change" id="priceChange">---</div>
+<div class="price-stats"><div class="price-stat"><div class="price-stat-label">بالاترین (۷ روز)</div><div class="price-stat-value" id="highPrice" style="color:var(--success)">---</div></div><div class="price-stat"><div class="price-stat-label">پایین‌ترین (۷ روز)</div><div class="price-stat-value" id="lowPrice" style="color:var(--danger)">---</div></div></div>
+</div>
+<div class="time-filters"><button class="time-filter active" onclick="setFilter(this)">۲۴ ساعت</button><button class="time-filter" onclick="setFilter(this)">هفته</button><button class="time-filter" onclick="setFilter(this)">ماه</button></div>
+<div class="chart-container"><canvas id="priceChart"></canvas></div>
+</section>
+
+<section class="calculator-section" id="calculator">
+<h2 class="section-title">🧮 ماشین‌حساب خرید و فروش</h2>
+<div class="calc-tabs"><button class="calc-tab active" onclick="setCalcMode('buy',this)">خرید طلا</button><button class="calc-tab" onclick="setCalcMode('sell',this)">فروش طلا</button></div>
+<div class="calc-box"><div class="calc-input-group"><label id="calcLabel">مبلغ پرداختی (ریال)</label><input type="number" class="calc-input" id="calcInput" placeholder="مثلاً ۱۰۰۰۰۰۰۰۰" oninput="calculate()"></div><div class="calc-result"><div class="calc-result-label" id="calcResultLabel">مقدار طلا</div><div class="calc-result-value" id="calcResult">۰ میلی‌گرم</div></div><button class="calc-btn" id="calcBtn" onclick="alert('این قابلیت به زودی فعال می‌شود!')">ثبت سفارش خرید</button></div>
+</section>
+
+<section class="stats-section"><h2 class="section-title">📊 آمار مثقال زر</h2><div class="stats-grid"><div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-number" id="statUsers">---</div><div class="stat-label">کاربر فعال</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-chart-line"></i></div><div class="stat-number" id="statVolume">---</div><div class="stat-label">کیلوگرم حجم معاملات</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-store"></i></div><div class="stat-number" id="statBranches">---</div><div class="stat-label">شعبه و نمایندگی</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div><div class="stat-number" id="statDelivered">---</div><div class="stat-label">کیلوگرم طلا تحویلی</div></div></div></section>
+
+<section class="benefits-section" id="benefits"><h2 class="section-title">✨ مزایای خرید از مثقال زر</h2><div class="benefits-grid"><div class="benefit-card"><div class="benefit-icon"><i class="fas fa-percentage"></i></div><h3 class="benefit-title">بدون اجرت</h3><p class="benefit-desc">طلایی که از مثقال زر می‌خرید، دارای کارمزد شفاف و بدون اجرت، مالیات و کمیسیون فروشنده است.</p></div><div class="benefit-card"><div class="benefit-icon"><i class="fas fa-seedling"></i></div><h3 class="benefit-title">پس‌انداز میلی‌گرمی</h3><p class="benefit-desc">می‌توانید از یک میلی‌گرم تا میلیون‌ها میلی‌گرم طلای ۱۸ عیار پس‌انداز و سرمایه‌گذاری کنید.</p></div><div class="benefit-card"><div class="benefit-icon"><i class="fas fa-shield-alt"></i></div><h3 class="benefit-title">امن و دارای مجوز</h3><p class="benefit-desc">بستر امن مثقال زر تمامی مجوزهای خرید و فروش طلا را دارد؛ با خیال راحت سرمایه‌گذاری کنید.</p></div></div></section>
+
+<section class="steps-section" id="steps"><div class="steps-container"><h2 class="section-title">🚀 چند قدم تا طلادار شدن</h2><div class="steps-grid"><div class="step-card"><div class="step-number">۱</div><h3 class="step-title">ثبت‌نام</h3><p class="step-desc">در کمتر از ۲ دقیقه ثبت‌نام کن و احراز هویتت رو انجام بده</p></div><div class="step-card"><div class="step-number">۲</div><h3 class="step-title">واریز به کیف پول</h3><p class="step-desc">به میزان دلخواه و شبانه‌روزی، کیف‌پولت رو شارژ کن</p></div><div class="step-card"><div class="step-number">۳</div><h3 class="step-title">خرید طلا</h3><p class="step-desc">هر قدر که مایلی، به صورت آنی و بدون محدودیت زمانی طلا بخر</p></div><div class="step-card"><div class="step-number">۴</div><h3 class="step-title">فروش یا تحویل</h3><p class="step-desc">هر زمان بخوای، موجودی طلات رو بفروش یا فیزیکی تحویل بگیر</p></div></div></div></section>
+
+<section class="faq-section" id="faq"><h2 class="section-title">❓ سوالات متداول</h2><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>مثقال زر چیست؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">مثقال زر، پلتفرم خرید و فروش آنلاین طلا است. در اینجا پول نقد خودت رو به راحتی به طلا تبدیل کن و هر زمان اراده کردی، اون رو با قیمت روز بفروش یا طلای فیزیکی تحویل بگیر.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>کارمزد خرید و فروش چقدر است؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">کارمزد خرید و فروش طلا در مثقال زر نیم درصده (۰.۵٪). این کارمزد در هنگام خرید به مبلغ اضافه و در هنگام فروش از حساب برداشت می‌شود.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>آیا طلای فیزیکی هم تحویل می‌دهید؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">بله! حداقل ۵ گرم طلا می‌توانید درخواست تحویل فیزیکی بدهید. طلای شما ضرب شده و با فاکتور رسمی تحویل داده می‌شود.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>قیمت طلا بر چه اساسی تعیین می‌شود؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">قیمت طلای آب شده بر اساس معاملات واقعی و در حجم بالای بازار بزرگ تهران به دست می‌آید و به صورت لحظه‌ای به‌روزرسانی می‌شود.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>آیا خرید طلا در مثقال زر امن است؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">بله. مثقال زر از پروتکل‌های امنیتی پیشرفته استفاده می‌کند و تمام تراکنش‌ها با فاکتور رسمی ثبت می‌شوند. طلای شما در خزانه امن نگهداری می‌شود.</div></div></section>
+
+<footer class="footer"><div class="footer-links"><a href="#">درباره ما</a><a href="#">تماس با ما</a><a href="#">قوانین</a><a href="#">راهنما</a></div><div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div><p>© ۱۴۰۴ مثقال زر - تمامی حقوق محفوظ است</p></footer>
+
+<script>
+let currentPrice=187810000;let calcMode='buy';
+async function fetchPrice(){try{const res=await fetch('/api/v1/gold/price');const data=await res.json();currentPrice=data.price;const priceEl=document.getElementById('goldPrice');priceEl.textContent=data.price.toLocaleString('fa-IR');priceEl.classList.remove('loading-pulse');const changeEl=document.getElementById('priceChange');const sign=data.change>=0?'+':'';const arrow=data.change>=0?'▲':'▼';changeEl.innerHTML=arrow+' '+sign+data.changePercent+'% <span style="font-size:0.9rem">('+sign+(data.change/1000000).toFixed(2)+' میلیون)</span>';changeEl.className='price-change '+(data.change>=0?'up':'down');document.getElementById('highPrice').textContent=data.high.toLocaleString('fa-IR');document.getElementById('lowPrice').textContent=data.low.toLocaleString('fa-IR')}catch(e){console.error(e);document.getElementById('goldPrice').textContent=currentPrice.toLocaleString('fa-IR')}}
+async function fetchStats(){try{const res=await fetch('/api/v1/stats');const data=await res.json();document.getElementById('statUsers').textContent=(data.users/1000000).toFixed(1)+'M+';document.getElementById('statVolume').textContent=(data.volume/1000).toFixed(1)+'K+';document.getElementById('statBranches').textContent=data.branches;document.getElementById('statDelivered').textContent=data.delivered+'+'}catch(e){console.error(e)}}
+async function fetchChart(){try{const res=await fetch('/api/v1/gold/history');const data=await res.json();drawChart(data)}catch(e){console.error(e)}}
+function drawChart(data){const canvas=document.getElementById('priceChart');if(!canvas)return;const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;const rect=canvas.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;ctx.scale(dpr,dpr);const w=rect.width;const h=rect.height;const padding=40;const prices=data.map(d=>d.price);const min=Math.min(...prices)*0.999;const max=Math.max(...prices)*1.001;ctx.clearRect(0,0,w,h);ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;for(let i=0;i<5;i++){const y=padding+(h-2*padding)*i/4;ctx.beginPath();ctx.moveTo(padding,y);ctx.lineTo(w-padding,y);ctx.stroke()}ctx.strokeStyle='#ffd700';ctx.lineWidth=3;ctx.beginPath();data.forEach((d,i)=>{const x=padding+(w-2*padding)*i/(data.length-1);const y=padding+(h-2*padding)*(1-(d.price-min)/(max-min));if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();ctx.lineTo(w-padding,h-padding);ctx.lineTo(padding,h-padding);ctx.closePath();const grad=ctx.createLinearGradient(0,0,0,h);grad.addColorStop(0,'rgba(255,215,0,0.3)');grad.addColorStop(1,'rgba(255,215,0,0)');ctx.fillStyle=grad;ctx.fill();data.forEach((d,i)=>{if(i%5!==0&&i!==data.length-1)return;const x=padding+(w-2*padding)*i/(data.length-1);const y=padding+(h-2*padding)*(1-(d.price-min)/(max-min));ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle='#ffd700';ctx.fill()})}
+function setCalcMode(mode,btn){calcMode=mode;document.querySelectorAll('.calc-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');const label=document.getElementById('calcLabel');const btnEl=document.getElementById('calcBtn');const resultLabel=document.getElementById('calcResultLabel');if(mode==='buy'){label.textContent='مبلغ پرداختی (ریال)';btnEl.textContent='ثبت سفارش خرید';resultLabel.textContent='مقدار طلا'}else{label.textContent='مقدار طلا (میلی‌گرم)';btnEl.textContent='ثبت سفارش فروش';resultLabel.textContent='مبلغ دریافتی'}calculate()}
+function calculate(){const input=parseFloat(document.getElementById('calcInput').value)||0;const resultEl=document.getElementById('calcResult');if(calcMode==='buy'){const mg=(input/currentPrice)*1000;if(mg>=1000){resultEl.textContent=(mg/1000).toFixed(4)+' گرم'}else{resultEl.textContent=Math.floor(mg).toLocaleString('fa-IR')+' میلی‌گرم'}}else{const rial=(input/1000)*currentPrice;resultEl.textContent=Math.floor(rial).toLocaleString('fa-IR')+' ریال'}}
+function toggleFaq(el){const item=el.parentElement;const wasActive=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));if(!wasActive)item.classList.add('active')}
+function setFilter(btn){document.querySelectorAll('.time-filter').forEach(f=>f.classList.remove('active'));btn.classList.add('active')}
+function toggleMenu(){const links=document.querySelector('.nav-links');links.style.display=links.style.display==='flex'?'none':'flex';links.style.position='absolute';links.style.top='60px';links.style.right='20px';links.style.flexDirection='column';links.style.background='var(--bg-light)';links.style.padding='20px';links.style.borderRadius='10px';links.style.border='1px solid rgba(255,215,0,0.2)'}
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'})})});
+fetchPrice();fetchStats();fetchChart();setInterval(fetchPrice,30000);window.addEventListener('resize',fetchChart);
+</script>
+</body>
+</html>
