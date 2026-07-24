@@ -2,145 +2,1092 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مثقال زر | خرید و فروش آنلاین طلا</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-:root{--gold:#ffd700;--gold-dark:#b8860b;--bg:#0f0f1a;--bg-light:#1a1a2e;--bg-card:rgba(255,255,255,0.05);--text:#fff;--text-muted:#a0a0b0;--success:#00d084;--danger:#ff4757}
+:root{
+  --gold:#ffd700;
+  --gold-light:#ffec8b;
+  --gold-dark:#b8860b;
+  --gold-glow:rgba(255,215,0,0.15);
+  --bg:#080810;
+  --bg-light:#12121f;
+  --bg-card:rgba(255,255,255,0.03);
+  --glass:rgba(255,255,255,0.05);
+  --glass-border:rgba(255,215,0,0.08);
+  --text:#ffffff;
+  --text-muted:#8b8b9e;
+  --success:#00d084;
+  --danger:#ff4757;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-.navbar{background:rgba(15,15,26,0.95);backdrop-filter:blur(10px);padding:15px 0;position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid rgba(255,215,0,0.1)}
-.nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
-.logo{font-size:1.8rem;color:var(--gold);font-weight:bold;text-decoration:none;display:flex;align-items:center;gap:10px}
-.nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a{color:var(--text);text-decoration:none;transition:color 0.3s;font-size:0.95rem}
+html{scroll-behavior:smooth}
+body{
+  font-family:Vazirmatn,Tahoma,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* Animated background particles */
+.bg-animation{
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
+}
+.particle{
+  position:absolute;
+  width:4px;height:4px;
+  background:var(--gold);
+  border-radius:50%;
+  opacity:0.3;
+  animation:float 15s infinite;
+  box-shadow:0 0 10px var(--gold);
+}
+@keyframes float{
+  0%,100%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:0.6}
+  90%{opacity:0.6}
+  100%{transform:translateY(-10vh) rotate(720deg);opacity:0}
+}
+
+/* Navbar */
+.navbar{
+  background:rgba(8,8,0,0.8);
+  backdrop-filter:blur(20px);
+  padding:0;
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid var(--glass-border);
+  transition:all 0.3s;
+}
+.nav-container{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+}
+.logo{
+  font-size:1.6rem;
+  color:var(--gold);
+  font-weight:900;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-shadow:0 0 20px rgba(255,215,0,0.3);
+  transition:transform 0.3s;
+}
+.logo:hover{transform:scale(1.05)}
+.nav-links{display:flex;gap:35px;list-style:none;align-items:center}
+.nav-links a{
+  color:var(--text-muted);
+  text-decoration:none;
+  transition:all 0.3s;
+  font-size:0.9rem;
+  font-weight:500;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;
+  bottom:-5px;right:0;width:0;height:2px;
+  background:var(--gold);
+  transition:width 0.3s;
+  border-radius:2px;
+}
 .nav-links a:hover{color:var(--gold)}
-.nav-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;padding:10px 25px;border-radius:25px;text-decoration:none;font-weight:bold}
+.nav-links a:hover::after{width:100%}
+.nav-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#000;
+  padding:10px 28px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:0.9rem;
+  transition:all 0.3s;
+  box-shadow:0 4px 15px rgba(255,215,0,0.3);
+}
+.nav-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 25px rgba(255,215,0,0.5);
+}
 .menu-toggle{display:none;color:var(--gold);font-size:1.5rem;cursor:pointer}
-.hero{margin-top:80px;padding:60px 20px;text-align:center;background:linear-gradient(180deg,var(--bg-light) 0%,var(--bg) 100%)}
-.hero h1{font-size:2.5rem;margin-bottom:10px}
-.hero-subtitle{color:var(--text-muted);margin-bottom:40px;font-size:1.1rem}
-.price-display{background:var(--bg-card);backdrop-filter:blur(10px);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:40px;max-width:600px;margin:0 auto 30px}
-.price-label{color:var(--text-muted);font-size:1rem;margin-bottom:10px}
-.price-value{font-size:3.5rem;color:var(--gold);font-weight:bold;direction:ltr;display:inline-block}
-.price-unit{font-size:1.2rem;color:var(--text-muted)}
-.price-change{margin-top:15px;font-size:1.1rem}
-.price-change.up{color:var(--success)}.price-change.down{color:var(--danger)}
-.price-stats{display:flex;justify-content:center;gap:40px;margin-top:20px;flex-wrap:wrap}
+
+/* Hero */
+.hero{
+  margin-top:70px;
+  padding:80px 20px 40px;
+  text-align:center;
+  position:relative;
+}
+.hero-badge{
+  display:inline-block;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  padding:8px 20px;
+  border-radius:50px;
+  font-size:0.85rem;
+  color:var(--gold);
+  margin-bottom:25px;
+  backdrop-filter:blur(10px);
+}
+.hero h1{
+  font-size:2.8rem;
+  margin-bottom:15px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light),var(--gold));
+  background-size:200% 200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shine 3s ease infinite;
+}
+@keyframes shine{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.hero-subtitle{
+  color:var(--text-muted);
+  margin-bottom:50px;
+  font-size:1.1rem;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Price Display - Glassmorphism */
+.price-display{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  padding:45px 35px;
+  max-width:580px;
+  margin:0 auto 35px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.price-display::before{
+  content:'';position:absolute;
+  top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle,rgba(255,215,0,0.08) 0%,transparent 70%);
+  animation:rotate 20s linear infinite;
+  pointer-events:none;
+}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.price-display:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.price-label{
+  color:var(--text-muted);
+  font-size:0.95rem;
+  margin-bottom:12px;
+  position:relative;
+  z-index:1;
+}
+.price-value{
+  font-size:3.2rem;
+  color:var(--gold);
+  font-weight:900;
+  direction:ltr;
+  display:inline-block;
+  position:relative;
+  z-index:1;
+  text-shadow:0 0 30px rgba(255,215,0,0.3);
+}
+.price-unit{
+  font-size:1rem;
+  color:var(--text-muted);
+  margin-top:8px;
+  position:relative;
+  z-index:1;
+}
+.price-change{
+  margin-top:18px;
+  font-size:1rem;
+  font-weight:600;
+  position:relative;
+  z-index:1;
+}
+.price-change.up{color:var(--success);text-shadow:0 0 10px rgba(0,208,132,0.3)}
+.price-change.down{color:var(--danger);text-shadow:0 0 10px rgba(255,71,87,0.3)}
+.price-stats{
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  margin-top:25px;
+  position:relative;
+  z-index:1;
+}
 .price-stat{text-align:center}
-.price-stat-label{color:var(--text-muted);font-size:0.85rem}
-.price-stat-value{font-size:1.1rem;font-weight:bold}
-.time-filters{display:flex;justify-content:center;gap:10px;margin:20px 0}
-.time-filter{background:var(--bg-card);border:1px solid rgba(255,215,0,0.2);color:var(--text);padding:8px 20px;border-radius:20px;cursor:pointer;transition:all 0.3s;font-family:inherit}
-.time-filter.active,.time-filter:hover{background:var(--gold);color:#000}
-.chart-container{max-width:800px;margin:30px auto;height:300px;background:var(--bg-card);border-radius:15px;padding:20px;border:1px solid rgba(255,215,0,0.1)}
-.calculator-section{padding:60px 20px;max-width:800px;margin:0 auto}
-.section-title{text-align:center;font-size:2rem;margin-bottom:40px;color:var(--gold)}
-.calc-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:30px}
-.calc-tab{background:var(--bg-card);border:1px solid rgba(255,215,0,0.2);color:var(--text);padding:12px 40px;border-radius:10px;cursor:pointer;font-size:1.1rem;transition:all 0.3s;font-family:inherit}
-.calc-tab.active{background:var(--gold);color:#000;font-weight:bold}
-.calc-box{background:var(--bg-card);border:1px solid rgba(255,215,0,0.2);border-radius:20px;padding:40px}
-.calc-input-group{margin-bottom:25px}
-.calc-input-group label{display:block;margin-bottom:10px;color:var(--text-muted)}
-.calc-input{width:100%;padding:15px;border-radius:10px;border:1px solid rgba(255,215,0,0.3);background:rgba(0,0,0,0.3);color:var(--text);font-size:1.2rem;direction:ltr;font-family:inherit}
-.calc-result{background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(184,134,11,0.1));border:1px solid var(--gold);border-radius:15px;padding:25px;text-align:center;margin-top:20px}
-.calc-result-label{color:var(--text-muted);margin-bottom:5px}
-.calc-result-value{font-size:2rem;color:var(--gold);font-weight:bold}
-.calc-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;border:none;border-radius:10px;font-size:1.2rem;font-weight:bold;cursor:pointer;margin-top:20px;font-family:inherit;transition:transform 0.2s}
-.calc-btn:hover{transform:scale(1.02)}
-.stats-section{padding:60px 20px;background:var(--bg-light)}
-.stats-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
-.stat-card{background:var(--bg-card);border:1px solid rgba(255,215,0,0.1);border-radius:15px;padding:30px;text-align:center;transition:transform 0.3s,border-color 0.3s}
-.stat-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.3)}
-.stat-icon{font-size:2.5rem;color:var(--gold);margin-bottom:15px}
-.stat-number{font-size:2rem;font-weight:bold;color:var(--gold)}
-.stat-label{color:var(--text-muted);margin-top:5px}
-.benefits-section{padding:60px 20px;max-width:1000px;margin:0 auto}
-.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:40px}
-.benefit-card{background:var(--bg-card);border-radius:15px;padding:35px;border:1px solid rgba(255,215,0,0.1);transition:transform 0.3s}
-.benefit-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.3)}
-.benefit-icon{font-size:2.5rem;color:var(--gold);margin-bottom:15px}
-.benefit-title{font-size:1.3rem;margin-bottom:10px}
-.benefit-desc{color:var(--text-muted);line-height:1.8}
-.steps-section{padding:60px 20px;background:var(--bg-light)}
+.price-stat-label{color:var(--text-muted);font-size:0.8rem;margin-bottom:5px}
+.price-stat-value{font-size:1rem;font-weight:700}
+
+/* Time Filters */
+.time-filters{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:25px 0;
+}
+.time-filter{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  color:var(--text-muted);
+  padding:10px 24px;
+  border-radius:50px;
+  cursor:pointer;
+  transition:all 0.3s;
+  font-family:inherit;
+  font-size:0.85rem;
+  backdrop-filter:blur(10px);
+}
+.time-filter.active,.time-filter:hover{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#000;
+  border-color:transparent;
+  font-weight:700;
+  box-shadow:0 4px 15px rgba(255,215,0,0.3);
+}
+
+/* Chart */
+.chart-container{
+  max-width:800px;
+  margin:30px auto;
+  height:320px;
+  background:var(--glass);
+  border-radius:20px;
+  padding:25px;
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(10px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* Calculator */
+.calculator-section{
+  padding:80px 20px;
+  max-width:800px;
+  margin:0 auto;
+}
+.section-title{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:50px;
+  font-weight:900;
+  color:var(--gold);
+  position:relative;
+  display:inline-block;
+  left:50%;
+  transform:translateX(-50%);
+}
+.section-title::after{
+  content:'';position:absolute;
+  bottom:-10px;left:50%;transform:translateX(-50%);
+  width:60px;height:4px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-dark));
+  border-radius:2px;
+}
+.calc-tabs{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:35px;
+}
+.calc-tab{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  color:var(--text-muted);
+  padding:14px 45px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:all 0.3s;
+  font-family:inherit;
+  font-weight:600;
+  backdrop-filter:blur(10px);
+}
+.calc-tab.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#000;
+  font-weight:800;
+  border-color:transparent;
+  box-shadow:0 4px 20px rgba(255,215,0,0.3);
+}
+.calc-tab:hover:not(.active){
+  border-color:var(--gold);
+  color:var(--gold);
+}
+.calc-box{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  padding:45px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+}
+.calc-input-group{margin-bottom:30px}
+.calc-input-group label{
+  display:block;
+  margin-bottom:12px;
+  color:var(--text-muted);
+  font-size:0.95rem;
+}
+.calc-input{
+  width:100%;
+  padding:18px;
+  border-radius:14px;
+  border:1px solid var(--glass-border);
+  background:rgba(0,0,0,0.2);
+  color:var(--text);
+  font-size:1.2rem;
+  direction:ltr;
+  font-family:inherit;
+  transition:all 0.3s;
+}
+.calc-input:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(255,215,0,0.1);
+}
+.calc-result{
+  background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(184,134,11,0.05));
+  border:1px solid rgba(255,215,0,0.2);
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+  margin-top:25px;
+  transition:transform 0.3s;
+}
+.calc-result:hover{transform:scale(1.02)}
+.calc-result-label{color:var(--text-muted);margin-bottom:8px;font-size:0.9rem}
+.calc-result-value{
+  font-size:2.2rem;
+  color:var(--gold);
+  font-weight:900;
+  text-shadow:0 0 20px rgba(255,215,0,0.2);
+}
+.calc-btn{
+  width:100%;
+  padding:18px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#000;
+  border:none;
+  border-radius:14px;
+  font-size:1.1rem;
+  font-weight:800;
+  cursor:pointer;
+  margin-top:25px;
+  font-family:inherit;
+  transition:all 0.3s;
+  box-shadow:0 4px 20px rgba(255,215,0,0.3);
+}
+.calc-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 30px rgba(255,215,0,0.5);
+}
+
+/* Stats */
+.stats-section{
+  padding:80px 20px;
+  background:var(--bg-light);
+  position:relative;
+}
+.stats-section::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.3;
+}
+.stats-grid{
+  max-width:1000px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+.stat-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  padding:35px 25px;
+  text-align:center;
+  transition:all 0.4s;
+  backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
+}
+.stat-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-dark));
+  transform:scaleX(0);
+  transition:transform 0.4s;
+}
+.stat-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(255,215,0,0.2);
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+.stat-card:hover::before{transform:scaleX(1)}
+.stat-icon{
+  font-size:2.5rem;
+  color:var(--gold);
+  margin-bottom:18px;
+  transition:transform 0.3s;
+}
+.stat-card:hover .stat-icon{transform:scale(1.2) rotate(-5deg)}
+.stat-number{
+  font-size:2rem;
+  font-weight:900;
+  color:var(--gold);
+  text-shadow:0 0 15px rgba(255,215,0,0.2);
+}
+.stat-label{color:var(--text-muted);margin-top:8px;font-size:0.9rem}
+
+/* Benefits */
+.benefits-section{
+  padding:80px 20px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.benefits-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+  margin-top:50px;
+}
+.benefit-card{
+  background:var(--glass);
+  border-radius:20px;
+  padding:40px 30px;
+  border:1px solid var(--glass-border);
+  transition:all 0.4s;
+  backdrop-filter:blur(10px);
+  position:relative;
+}
+.benefit-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(255,215,0,0.2);
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+.benefit-icon{
+  width:60px;height:60px;
+  background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(184,134,11,0.1));
+  border-radius:0px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.8rem;
+  color:var(--gold);
+  margin-bottom:20px;
+  transition:transform 0.3s;
+}
+.benefit-card:hover .benefit-icon{transform:rotate(-10deg) scale(1.1)}
+.benefit-title{font-size:1.3rem;margin-bottom:12px;font-weight:800}
+.benefit-desc{color:var(--text-muted);line-height:1.8;font-size:0.95rem}
+
+/* Steps */
+.steps-section{
+  padding:80px 20px;
+  background:var(--bg-light);
+  position:relative;
+}
+.steps-section::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.3;
+}
 .steps-container{max-width:1000px;margin:0 auto}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:40px}
-.step-card{text-align:center;padding:30px;position:relative}
-.step-number{width:50px;height:50px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.3rem;margin:0 auto 15px}
-.step-title{font-size:1.2rem;margin-bottom:10px}
-.step-desc{color:var(--text-muted);font-size:0.95rem}
-.faq-section{padding:60px 20px;max-width:800px;margin:0 auto}
-.faq-item{background:var(--bg-card);border:1px solid rgba(255,215,0,0.1);border-radius:10px;margin-bottom:15px;overflow:hidden;transition:border-color 0.3s}
-.faq-item:hover{border-color:rgba(255,215,0,0.3)}
-.faq-question{padding:20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:bold}
-.faq-answer{padding:0 20px 20px;color:var(--text-muted);display:none;line-height:1.8}
-.faq-item.active .faq-answer{display:block}
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+  margin-top:50px;
+}
+.step-card{
+  text-align:center;
+  padding:30px 20px;
+  position:relative;
+  background:var(--glass);
+  border-radius:20px;
+  border:1px solid var(--glass-border);
+  transition:all 0.4s;
+  backdrop-filter:blur(10px);
+}
+.step-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,215,0,0.15);
+}
+.step-number{
+  width:55px;height:55px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#000;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:1.3rem;
+  margin:0 auto 18px;
+  box-shadow:0 4px 15px rgba(255,215,0,0.3);
+  transition:transform 0.3s;
+}
+.step-card:hover .step-number{transform:scale(1.1) rotate(10deg)}
+.step-title{font-size:1.15rem;margin-bottom:10px;font-weight:700}
+.step-desc{color:var(--text-muted);font-size:0.9rem;line-height:1.7}
+
+/* FAQ */
+.faq-section{
+  padding:80px 20px;
+  max-width:800px;
+  margin:0 auto;
+}
+.faq-item{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:0px;
+  margin-bottom:15px;
+  overflow:hidden;
+  transition:all 0.3s;
+  backdrop-filter:blur(10px);
+}
+.faq-item:hover{border-color:rgba(255,215,0,0.15)}
+.faq-question{
+  padding:22px 25px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:700;
+  font-size:1.05rem;
+  transition:color 0.3s;
+}
+.faq-question:hover{color:var(--gold)}
+.faq-answer{
+  padding:0 25px 22px;
+  color:var(--text-muted);
+  display:none;
+  line-height:1.8;
+  font-size:0.95rem;
+}
+.faq-item.active .faq-answer{display:block;animation:fadeIn 0.4s ease}
 .faq-item.active .faq-icon{transform:rotate(180deg)}
-.faq-icon{transition:transform 0.3s;color:var(--gold)}
-.footer{background:var(--bg-light);border-top:1px solid rgba(255,215,0,0.1);padding:40px 20px;text-align:center;color:var(--text-muted)}
-.footer-links{display:flex;justify-content:center;gap:30px;margin-bottom:20px;flex-wrap:wrap}
-.footer-links a{color:var(--text-muted);text-decoration:none;transition:color 0.3s}
-.footer-links a:hover{color:var(--gold)}
-.footer-social{margin:20px 0}
-.footer-social a{color:var(--text-muted);font-size:1.5rem;margin:0 10px;transition:color 0.3s}
-.footer-social a:hover{color:var(--gold)}
-@media(max-width:768px){.nav-links{display:none}.menu-toggle{display:block}.hero h1{font-size:1.8rem}.price-value{font-size:2.5rem}.stats-grid{grid-template-columns:1fr 1fr}.benefits-grid{grid-template-columns:1fr}.calc-tabs{flex-direction:column}.calc-tab{width:100%}}
+.faq-icon{
+  transition:transform 0.4s;
+  color:var(--gold);
+  font-size:0.9rem;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Footer */
+.footer{
+  background:var(--bg-light);
+  border-top:1px solid var(--glass-border);
+  padding:50px 20px 30px;
+  text-align:center;
+  position:relative;
+}
+.footer::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.3;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:35px;
+  margin-bottom:25px;
+  flex-wrap:wrap;
+}
+.footer-links a{
+  color:var(--text-muted);
+  text-decoration:none;
+  transition:all 0.3s;
+  font-size:0.95rem;
+}
+.footer-links a:hover{color:var(--gold);transform:translateY(-2px)}
+.footer-social{margin:25px 0}
+.footer-social a{
+  color:var(--text-muted);
+  font-size:1.4rem;
+  margin:0 12px;
+  transition:all 0.3s;
+  display:inline-block;
+}
+.footer-social a:hover{color:var(--gold);transform:translateY(-5px) scale(1.2)}
+.footer p{color:var(--text-muted);font-size:0.85rem;margin-top:20px}
+
+/* Scroll animations */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Loading */
+.loading-pulse{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* Responsive */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .menu-toggle{display:block}
+  .hero h1{font-size:2rem}
+  .price-value{font-size:2.4rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .benefits-grid{grid-template-columns:1fr}
+  .calc-tabs{flex-direction:column}
+  .calc-tab{width:100%}
+  .price-stats{gap:25px}
+  .section-title{font-size:1.7rem}
+}
+
+/* Mobile menu */
+.mobile-menu{
+  position:fixed;
+  top:70px;right:0;
+  width:280px;height:calc(100vh - 70px);
+  background:rgba(8,8,0,0.98);
+  backdrop-filter:blur(20px);
+  border-left:1px solid var(--glass-border);
+  padding:30px;
+  transform:translateX(100%);
+  transition:transform 0.4s ease;
+  z-index:999;
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{
+  display:block;
+  color:var(--text);
+  text-decoration:none;
+  padding:15px 0;
+  font-size:1.1rem;
+  border-bottom:1px solid var(--glass-border);
+  transition:color 0.3s;
+}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu .nav-btn{
+  display:inline-block;
+  margin-top:20px;
+  text-align:center;
+  width:100%;
+}
 </style>
 </head>
 <body>
-<nav class="navbar">
-<div class="nav-container">
-<a href="#" class="logo"><i class="fas fa-coins"></i>مثقال زر</a>
-<ul class="nav-links"><li><a href="#price">قیمت لحظه‌ای</a></li><li><a href="#calculator">ماشین‌حساب</a></li><li><a href="#benefits">مزایا</a></li><li><a href="#steps">نحوه خرید</a></li><li><a href="#faq">سوالات</a></li></ul>
-<a href="#calculator" class="nav-btn">شروع کنید</a>
-<i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
+
+<!-- Animated Background -->
+<div class="bg-animation" id="particles"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#price" onclick="closeMenu()">قیمت لحظه‌ای</a>
+  <a href="#calculator" onclick="closeMenu()">ماشین‌حساب</a>
+  <a href="#benefits" onclick="closeMenu()">مزایا</a>
+  <a href="#steps" onclick="closeMenu()">نحوه خرید</a>
+  <a href="#faq" onclick="closeMenu()">سوالات</a>
+  <a href="#calculator" class="nav-btn" onclick="closeMenu()">شروع کنید</a>
 </div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo"><i class="fas fa-coins"></i> مثقال زر</a>
+    <ul class="nav-links">
+      <li><a href="#price">قیمت لحظه‌ای</a></li>
+      <li><a href="#calculator">ماشین‌حساب</a></li>
+      <li><a href="#benefits">مزایا</a></li>
+      <li><a href="#steps">نحوه خرید</a></li>
+      <li><a href="#faq">سوالات</a></li>
+    </ul>
+    <a href="register.html" class="nav-btn" id="authBtn">ثبت‌نام / ورود</a>
+    <i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
+  </div>
 </nav>
 
 <section class="hero" id="price">
-<h1>💰 قیمت لحظه‌ای طلا</h1>
-<p class="hero-subtitle">خرید و فروش آنلاین طلای ۱۸ عیار بدون اجرت</p>
-<div class="price-display">
-<div class="price-label">قیمت ۱ گرم طلای ۱۸ عیار</div>
-<div class="price-value loading-pulse" id="goldPrice">---</div>
-<div class="price-unit">ریال</div>
-<div class="price-change" id="priceChange">---</div>
-<div class="price-stats"><div class="price-stat"><div class="price-stat-label">بالاترین (۷ روز)</div><div class="price-stat-value" id="highPrice" style="color:var(--success)">---</div></div><div class="price-stat"><div class="price-stat-label">پایین‌ترین (۷ روز)</div><div class="price-stat-value" id="lowPrice" style="color:var(--danger)">---</div></div></div>
-</div>
-<div class="time-filters"><button class="time-filter active" onclick="setFilter(this)">۲۴ ساعت</button><button class="time-filter" onclick="setFilter(this)">هفته</button><button class="time-filter" onclick="setFilter(this)">ماه</button></div>
-<div class="chart-container"><canvas id="priceChart"></canvas></div>
+  <div class="hero-badge"><i class="fas fa-bolt" style="margin-left:6px"></i> قیمت به صورت لحظه‌ای به‌روز می‌شود</div>
+  <h1>💰 قیمت لحظه‌ای طلا</h1>
+  <p class="hero-subtitle">خرید و فروش آنلاین طلای ۱۸ عیار با کارمزد شفاف و بدون اجرت</p>
+  
+  <div class="price-display reveal">
+    <div class="price-label">قیمت هر گرم طلای ۱۸ عیار</div>
+    <div class="price-value loading-pulse" id="goldPrice">---</div>
+    <div class="price-unit">ریال</div>
+    <div class="price-change" id="priceChange">---</div>
+    <div class="price-stats">
+      <div class="price-stat">
+        <div class="price-stat-label">بالاترین (۷ روز)</div>
+        <div class="price-stat-value" id="highPrice" style="color:var(--success)">---</div>
+      </div>
+      <div class="price-stat">
+        <div class="price-stat-label">پایین‌ترین (۷ روز)</div>
+        <div class="price-stat-value" id="lowPrice" style="color:var(--danger)">---</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="time-filters reveal">
+    <button class="time-filter active" onclick="setFilter(this)">۲۴ ساعت</button>
+    <button class="time-filter" onclick="setFilter(this)">هفته</button>
+    <button class="time-filter" onclick="setFilter(this)">ماه</button>
+  </div>
+  
+  <div class="chart-container reveal"><canvas id="priceChart"></canvas></div>
 </section>
 
 <section class="calculator-section" id="calculator">
-<h2 class="section-title">🧮 ماشین‌حساب خرید و فروش</h2>
-<div class="calc-tabs"><button class="calc-tab active" onclick="setCalcMode('buy',this)">خرید طلا</button><button class="calc-tab" onclick="setCalcMode('sell',this)">فروش طلا</button></div>
-<div class="calc-box"><div class="calc-input-group"><label id="calcLabel">مبلغ پرداختی (ریال)</label><input type="number" class="calc-input" id="calcInput" placeholder="مثلاً ۱۰۰۰۰۰۰۰۰" oninput="calculate()"></div><div class="calc-result"><div class="calc-result-label" id="calcResultLabel">مقدار طلا</div><div class="calc-result-value" id="calcResult">۰ میلی‌گرم</div></div><button class="calc-btn" id="calcBtn" onclick="alert('این قابلیت به زودی فعال می‌شود!')">ثبت سفارش خرید</button></div>
+  <h2 class="section-title reveal">🧮 ماشین‌حساب خرید و فروش</h2>
+  <div class="calc-tabs reveal">
+    <button class="calc-tab active" onclick="setCalcMode('buy',this)">خرید طلا</button>
+    <button class="calc-tab" onclick="setCalcMode('sell',this)">فروش طلا</button>
+  </div>
+  <div class="calc-box reveal">
+    <div class="calc-input-group">
+      <label id="calcLabel">مبلغ پرداختی (ریال)</label>
+      <input type="number" class="calc-input" id="calcInput" placeholder="مثلاً ۱۰۰۰۰۰۰۰۰" oninput="calculate()">
+    </div>
+    <div class="calc-result">
+      <div class="calc-result-label" id="calcResultLabel">مقدار طلا</div>
+      <div class="calc-result-value" id="calcResult">۰ میلی‌گرم</div>
+    </div>
+    <button class="calc-btn" id="calcBtn" onclick="alert('این قابلیت به زودی فعال می‌شود!')">ثبت سفارش خرید</button>
+  </div>
 </section>
 
-<section class="stats-section"><h2 class="section-title">📊 آمار مثقال زر</h2><div class="stats-grid"><div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-number" id="statUsers">---</div><div class="stat-label">کاربر فعال</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-chart-line"></i></div><div class="stat-number" id="statVolume">---</div><div class="stat-label">کیلوگرم حجم معاملات</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-store"></i></div><div class="stat-number" id="statBranches">---</div><div class="stat-label">شعبه و نمایندگی</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div><div class="stat-number" id="statDelivered">---</div><div class="stat-label">کیلوگرم طلا تحویلی</div></div></div></section>
+<section class="stats-section">
+  <h2 class="section-title reveal">📊 آمار مثقال زر</h2>
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-users"></i></div>
+      <div class="stat-number" id="statUsers">---</div>
+      <div class="stat-label">کاربر فعال</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="stat-number" id="statVolume">---</div>
+      <div class="stat-label">کیلوگرم حجم معاملات</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-store"></i></div>
+      <div class="stat-number" id="statBranches">---</div>
+      <div class="stat-label">شعبه و نمایندگی</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div>
+      <div class="stat-number" id="statDelivered">---</div>
+      <div class="stat-label">کیلوگرم طلا تحویلی</div>
+    </div>
+  </div>
+</section>
 
-<section class="benefits-section" id="benefits"><h2 class="section-title">✨ مزایای خرید از مثقال زر</h2><div class="benefits-grid"><div class="benefit-card"><div class="benefit-icon"><i class="fas fa-percentage"></i></div><h3 class="benefit-title">بدون اجرت</h3><p class="benefit-desc">طلایی که از مثقال زر می‌خرید، دارای کارمزد شفاف و بدون اجرت، مالیات و کمیسیون فروشنده است.</p></div><div class="benefit-card"><div class="benefit-icon"><i class="fas fa-seedling"></i></div><h3 class="benefit-title">پس‌انداز میلی‌گرمی</h3><p class="benefit-desc">می‌توانید از یک میلی‌گرم تا میلیون‌ها میلی‌گرم طلای ۱۸ عیار پس‌انداز و سرمایه‌گذاری کنید.</p></div><div class="benefit-card"><div class="benefit-icon"><i class="fas fa-shield-alt"></i></div><h3 class="benefit-title">امن و دارای مجوز</h3><p class="benefit-desc">بستر امن مثقال زر تمامی مجوزهای خرید و فروش طلا را دارد؛ با خیال راحت سرمایه‌گذاری کنید.</p></div></div></section>
+<section class="benefits-section" id="benefits">
+  <h2 class="section-title reveal">✨ مزایای خرید از مثقال زر</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+      <h3 class="benefit-title">بدون اجرت</h3>
+      <p class="benefit-desc">طلایی که از مثقال زر می‌خرید، دارای کارمزد شفاف و بدون اجرت، مالیات و کمیسیون فروشنده است.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+      <h3 class="benefit-title">پس‌انداز میلی‌گرمی</h3>
+      <p class="benefit-desc">می‌توانید از یک میلی‌گرم تا میلیون‌ها میلی‌گرم طلای ۱۸ عیار پس‌انداز و سرمایه‌گذاری کنید.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+      <h3 class="benefit-title">امن و دارای مجوز</h3>
+      <p class="benefit-desc">بستر امن مثقال زر تمامی مجوزهای خرید و فروش طلا را دارد؛ با خیال راحت سرمایه‌گذاری کنید.</p>
+    </div>
+  </div>
+</section>
 
-<section class="steps-section" id="steps"><div class="steps-container"><h2 class="section-title">🚀 چند قدم تا طلادار شدن</h2><div class="steps-grid"><div class="step-card"><div class="step-number">۱</div><h3 class="step-title">ثبت‌نام</h3><p class="step-desc">در کمتر از ۲ دقیقه ثبت‌نام کن و احراز هویتت رو انجام بده</p></div><div class="step-card"><div class="step-number">۲</div><h3 class="step-title">واریز به کیف پول</h3><p class="step-desc">به میزان دلخواه و شبانه‌روزی، کیف‌پولت رو شارژ کن</p></div><div class="step-card"><div class="step-number">۳</div><h3 class="step-title">خرید طلا</h3><p class="step-desc">هر قدر که مایلی، به صورت آنی و بدون محدودیت زمانی طلا بخر</p></div><div class="step-card"><div class="step-number">۴</div><h3 class="step-title">فروش یا تحویل</h3><p class="step-desc">هر زمان بخوای، موجودی طلات رو بفروش یا فیزیکی تحویل بگیر</p></div></div></div></section>
+<section class="steps-section" id="steps">
+  <div class="steps-container">
+    <h2 class="section-title reveal">🚀 چند قدم تا طلادار شدن</h2>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-number">۱</div>
+        <h3 class="step-title">ثبت‌نام</h3>
+        <p class="step-desc">در کمتر از ۲ دقیقه ثبت‌نام کن و احراز هویتت رو انجام بده</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">۲</div>
+        <h3 class="step-title">واریز به کیف پول</h3>
+        <p class="step-desc">به میزان دلخواه و شبانه‌روزی، کیف‌پولت رو شارژ کن</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">۳</div>
+        <h3 class="step-title">خرید طلا</h3>
+        <p class="step-desc">هر قدر که مایلی، به صورت آنی و بدون محدودیت زمانی طلا بخر</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">۴</div>
+        <h3 class="step-title">فروش یا تحویل</h3>
+        <p class="step-desc">هر زمان بخوای، موجودی طلات رو بفروش یا فیزیکی تحویل بگیر</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="faq-section" id="faq"><h2 class="section-title">❓ سوالات متداول</h2><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>مثقال زر چیست؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">مثقال زر، پلتفرم خرید و فروش آنلاین طلا است. در اینجا پول نقد خودت رو به راحتی به طلا تبدیل کن و هر زمان اراده کردی، اون رو با قیمت روز بفروش یا طلای فیزیکی تحویل بگیر.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>کارمزد خرید و فروش چقدر است؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">کارمزد خرید و فروش طلا در مثقال زر نیم درصده (۰.۵٪). این کارمزد در هنگام خرید به مبلغ اضافه و در هنگام فروش از حساب برداشت می‌شود.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>آیا طلای فیزیکی هم تحویل می‌دهید؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">بله! حداقل ۵ گرم طلا می‌توانید درخواست تحویل فیزیکی بدهید. طلای شما ضرب شده و با فاکتور رسمی تحویل داده می‌شود.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>قیمت طلا بر چه اساسی تعیین می‌شود؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">قیمت طلای آب شده بر اساس معاملات واقعی و در حجم بالای بازار بزرگ تهران به دست می‌آید و به صورت لحظه‌ای به‌روزرسانی می‌شود.</div></div><div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>آیا خرید طلا در مثقال زر امن است؟</span><i class="fas fa-chevron-down faq-icon"></i></div><div class="faq-answer">بله. مثقال زر از پروتکل‌های امنیتی پیشرفته استفاده می‌کند و تمام تراکنش‌ها با فاکتور رسمی ثبت می‌شوند. طلای شما در خزانه امن نگهداری می‌شود.</div></div></section>
+<section class="faq-section" id="faq">
+  <h2 class="section-title reveal">❓ سوالات متداول</h2>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>مثقال زر چیست؟</span>
+      <i class="fas fa-chevron-down faq-icon"></i>
+    </div>
+    <div class="faq-answer">مثقال زر، پلتفرم خرید و فروش آنلاین طلا است. در اینجا پول نقد خودت رو به راحتی به طلا تبدیل کن و هر زمان اراده کردی، اون رو با قیمت روز بفروش یا طلای فیزیکی تحویل بگیر.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>کارمزد خرید و فروش چقدر است؟</span>
+      <i class="fas fa-chevron-down faq-icon"></i>
+    </div>
+    <div class="faq-answer">کارمزد خرید و فروش طلا در مثقال زر نیم درصده (۰.۵٪). این کارمزد در هنگام خرید به مبلغ اضافه و در هنگام فروش از حساب برداشت می‌شود.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>آیا طلای فیزیکی هم تحویل می‌دهید؟</span>
+      <i class="fas fa-chevron-down faq-icon"></i>
+    </div>
+    <div class="faq-answer">بله! حداقل ۵ گرم طلا می‌توانید درخواست تحویل فیزیکی بدهید. طلای شما ضرب شده و با فاکتور رسمی تحویل داده می‌شود.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>قیمت طلا بر چه اساسی تعیین می‌شود؟</span>
+      <i class="fas fa-chevron-down faq-icon"></i>
+    </div>
+    <div class="faq-answer">قیمت طلای آب شده بر اساس معاملات واقعی و در حجم بالای بازار بزرگ تهران به دست می‌آید و به صورت لحظه‌ای به‌روزرسانی می‌شود.</div>
+  </div>
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>آیا خرید طلا در مثقال زر امن است؟</span>
+      <i class="fas fa-chevron-down faq-icon"></i>
+    </div>
+    <div class="faq-answer">بله. مثقال زر از پروتکل‌های امنیتی پیشرفته استفاده می‌کند و تمام تراکنش‌ها با فاکتور رسمی ثبت می‌شوند. طلای شما در خزانه امن نگهداری می‌شود.</div>
+  </div>
+</section>
 
-<footer class="footer"><div class="footer-links"><a href="#">درباره ما</a><a href="#">تماس با ما</a><a href="#">قوانین</a><a href="#">راهنما</a></div><div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div><p>© ۱۴۰۴ مثقال زر - تمامی حقوق محفوظ است</p></footer>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="about.html">درباره ما</a>
+    <a href="#">تماس با ما</a>
+    <a href="#">قوانین</a>
+    <a href="#">راهنما</a>
+  </div>
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-telegram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+  <p>© ۱۴۰۴ مثقال زر - تمامی حقوق محفوظ است</p>
+</footer>
 
 <script>
-let currentPrice=187810000;let calcMode='buy';
-async function fetchPrice(){try{const res=await fetch('/api/v1/gold/price');const data=await res.json();currentPrice=data.price;const priceEl=document.getElementById('goldPrice');priceEl.textContent=data.price.toLocaleString('fa-IR');priceEl.classList.remove('loading-pulse');const changeEl=document.getElementById('priceChange');const sign=data.change>=0?'+':'';const arrow=data.change>=0?'▲':'▼';changeEl.innerHTML=arrow+' '+sign+data.changePercent+'% <span style="font-size:0.9rem">('+sign+(data.change/1000000).toFixed(2)+' میلیون)</span>';changeEl.className='price-change '+(data.change>=0?'up':'down');document.getElementById('highPrice').textContent=data.high.toLocaleString('fa-IR');document.getElementById('lowPrice').textContent=data.low.toLocaleString('fa-IR')}catch(e){console.error(e);document.getElementById('goldPrice').textContent=currentPrice.toLocaleString('fa-IR')}}
-async function fetchStats(){try{const res=await fetch('/api/v1/stats');const data=await res.json();document.getElementById('statUsers').textContent=(data.users/1000000).toFixed(1)+'M+';document.getElementById('statVolume').textContent=(data.volume/1000).toFixed(1)+'K+';document.getElementById('statBranches').textContent=data.branches;document.getElementById('statDelivered').textContent=data.delivered+'+'}catch(e){console.error(e)}}
-async function fetchChart(){try{const res=await fetch('/api/v1/gold/history');const data=await res.json();drawChart(data)}catch(e){console.error(e)}}
-function drawChart(data){const canvas=document.getElementById('priceChart');if(!canvas)return;const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;const rect=canvas.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;ctx.scale(dpr,dpr);const w=rect.width;const h=rect.height;const padding=40;const prices=data.map(d=>d.price);const min=Math.min(...prices)*0.999;const max=Math.max(...prices)*1.001;ctx.clearRect(0,0,w,h);ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;for(let i=0;i<5;i++){const y=padding+(h-2*padding)*i/4;ctx.beginPath();ctx.moveTo(padding,y);ctx.lineTo(w-padding,y);ctx.stroke()}ctx.strokeStyle='#ffd700';ctx.lineWidth=3;ctx.beginPath();data.forEach((d,i)=>{const x=padding+(w-2*padding)*i/(data.length-1);const y=padding+(h-2*padding)*(1-(d.price-min)/(max-min));if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();ctx.lineTo(w-padding,h-padding);ctx.lineTo(padding,h-padding);ctx.closePath();const grad=ctx.createLinearGradient(0,0,0,h);grad.addColorStop(0,'rgba(255,215,0,0.3)');grad.addColorStop(1,'rgba(255,215,0,0)');ctx.fillStyle=grad;ctx.fill();data.forEach((d,i)=>{if(i%5!==0&&i!==data.length-1)return;const x=padding+(w-2*padding)*i/(data.length-1);const y=padding+(h-2*padding)*(1-(d.price-min)/(max-min));ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle='#ffd700';ctx.fill()})}
-function setCalcMode(mode,btn){calcMode=mode;document.querySelectorAll('.calc-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');const label=document.getElementById('calcLabel');const btnEl=document.getElementById('calcBtn');const resultLabel=document.getElementById('calcResultLabel');if(mode==='buy'){label.textContent='مبلغ پرداختی (ریال)';btnEl.textContent='ثبت سفارش خرید';resultLabel.textContent='مقدار طلا'}else{label.textContent='مقدار طلا (میلی‌گرم)';btnEl.textContent='ثبت سفارش فروش';resultLabel.textContent='مبلغ دریافتی'}calculate()}
-function calculate(){const input=parseFloat(document.getElementById('calcInput').value)||0;const resultEl=document.getElementById('calcResult');if(calcMode==='buy'){const mg=(input/currentPrice)*1000;if(mg>=1000){resultEl.textContent=(mg/1000).toFixed(4)+' گرم'}else{resultEl.textContent=Math.floor(mg).toLocaleString('fa-IR')+' میلی‌گرم'}}else{const rial=(input/1000)*currentPrice;resultEl.textContent=Math.floor(rial).toLocaleString('fa-IR')+' ریال'}}
-function toggleFaq(el){const item=el.parentElement;const wasActive=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));if(!wasActive)item.classList.add('active')}
-function setFilter(btn){document.querySelectorAll('.time-filter').forEach(f=>f.classList.remove('active'));btn.classList.add('active')}
-function toggleMenu(){const links=document.querySelector('.nav-links');links.style.display=links.style.display==='flex'?'none':'flex';links.style.position='absolute';links.style.top='60px';links.style.right='20px';links.style.flexDirection='column';links.style.background='var(--bg-light)';links.style.padding='20px';links.style.borderRadius='10px';links.style.border='1px solid rgba(255,215,0,0.2)'}
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'})})});
-fetchPrice();fetchStats();fetchChart();setInterval(fetchPrice,30000);window.addEventListener('resize',fetchChart);
+let currentPrice=188060000;let calcMode='buy';
+
+// Create particles
+function createParticles(){
+  const container=document.getElementById('particles');
+  for(let i=0;i<30;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDelay=Math.random()*15+'s';
+    p.style.animationDuration=(10+Math.random()*10)+'s';
+    p.style.width=(2+Math.random()*4)+'px';
+    p.style.height=p.style.width;
+    container.appendChild(p);
+  }
+}
+createParticles();
+
+// Scroll reveal
+function revealOnScroll(){
+  const reveals=document.querySelectorAll('.reveal');
+  const windowHeight=window.innerHeight;
+  const elementVisible=100;
+  reveals.forEach((reveal)=>{
+    const elementTop=reveal.getBoundingClientRect().top;
+    if(elementTop<windowHeight-elementVisible){
+      reveal.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll',revealOnScroll);
+revealOnScroll();
+
+async function fetchPrice(){
+  try{
+    const res=await fetch('/api/v1/gold/price');
+    const data=await res.json();
+    currentPrice=data.price;
+    const priceEl=document.getElementById('goldPrice');
+    priceEl.textContent=data.price.toLocaleString('fa-IR');
+    priceEl.classList.remove('loading-pulse');
+    const changeEl=document.getElementById('priceChange');
+    const sign=data.change>=0?'+':'';
+    const arrow=data.change>=0?'▲':'▼';
+    changeEl.innerHTML=arrow+' '+sign+data.changePercent+'% <span style="font-size:0.85rem;opacity:0.8">('+sign+(data.change/1000000).toFixed(2)+' میلیون)</span>';
+    changeEl.className='price-change '+(data.change>=0?'up':'down');
+    document.getElementById('highPrice').textContent=data.high.toLocaleString('fa-IR');
+    document.getElementById('lowPrice').textContent=data.low.toLocaleString('fa-IR');
+  }catch(e){
+    console.error(e);
+    document.getElementById('goldPrice').textContent=currentPrice.toLocaleString('fa-IR');
+  }
+}
+async function fetchStats(){
+  try{
+    const res=await fetch('/api/v1/stats');
+    const data=await res.json();
+    document.getElementById('statUsers').textContent=(data.users/1000000).toFixed(1)+'M+';
+    document.getElementById('statVolume').textContent=(data.volume/1000).toFixed(1)+'K+';
+    document.getElementById('statBranches').textContent=data.branches;
+    document.getElementById('statDelivered').textContent=data.delivered+'+';
+  }catch(e){console.error(e)}
+}
+async function fetchChart(){
+  try{
+    const res=await fetch('/api/v1/gold/history');
+    const data=await res.json();
+    drawChart(data);
+  }catch(e){console.error(e)}
+}
+function drawChart(data){
+  const canvas=document.getElementById('priceChart');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  const rect=canvas.getBoundingClientRect();
+  canvas.width=rect.width*dpr;
+  canvas.height=rect.height*dpr;
+  ctx.scale(dpr,dpr);
+  const w=rect.width;const h=rect.height;const padding=40;
+  const prices=data.map(d=>d.price);
+  const min=Math.min(...prices)*0.999;
+  const max=Math.max(...prices)*1.001;
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='rgba(255,255,255,0.03)';
+  ctx.lineWidth=1;
+  for(let i=0;i<5;i++){
+    const y=padding+(h-2*padding)*i/4;
+    ctx.beginPath();ctx.moveTo(padding,y);ctx.lineTo(w-padding,y);ctx.stroke();
+  }
+  ctx.strokeStyle='#ffd700';ctx.lineWidth=3;
+  ctx.shadowColor='rgba(255,215,0,0.5)';ctx.shadowBlur=15;
+  ctx.beginPath();
+  data.forEach((d,i)=>{
+    const x=padding+(w-2*padding)*i/(data.length-1);
+    const y=padding+(h-2*padding)*(1-(d.price-min)/(max-min));
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  });
+  ctx.stroke();ctx.shadowBlur=0;
+  ctx.lineTo(w-padding,h-padding);ctx.lineTo(padding,h-padding);ctx.closePath();
+  const grad=ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0,'rgba(255,215,0,0.2)');
+  grad.addColorStop(1,'rgba(255,215,0,0)');
+  ctx.fillStyle=grad;ctx.fill();
+  data.forEach((d,i)=>{
+    if(i%5!==0&&i!==data.length-1)return;
+    const x=padding+(w-2*padding)*i/(data.length-1);
+    const y=padding+(h-2*padding)*(1-(d.price-min)/(max-min));
+    ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);
+    ctx.fillStyle='#ffd700';ctx.fill();
+    ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);
+    ctx.strokeStyle='rgba(255,215,0,0.3)';ctx.lineWidth=8;ctx.stroke();
+  });
+}
+function setCalcMode(mode,btn){
+  calcMode=mode;
+  document.querySelectorAll('.calc-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const label=document.getElementById('calcLabel');
+  const btnEl=document.getElementById('calcBtn');
+  const resultLabel=document.getElementById('calcResultLabel');
+  if(mode==='buy'){
+    label.textContent='مبلغ پرداختی (ریال)';
+    btnEl.textContent='ثبت سفارش خرید';
+    resultLabel.textContent='مقدار طلا';
+  }else{
+    label.textContent='مقدار طلا (میلی‌گرم)';
+    btnEl.textContent='ثبت سفارش فروش';
+    resultLabel.textContent='مبلغ دریافتی';
+  }
+  calculate();
+}
+function calculate(){
+  const input=parseFloat(document.getElementById('calcInput').value)||0;
+  const resultEl=document.getElementById('calcResult');
+  if(calcMode==='buy'){
+    const mg=(input/currentPrice)*1000;
+    if(mg>=1000){resultEl.textContent=(mg/1000).toFixed(4)+' گرم'}
+    else{resultEl.textContent=Math.floor(mg).toLocaleString('fa-IR')+' میلی‌گرم'}
+  }else{
+    const rial=(input/1000)*currentPrice;
+    resultEl.textContent=Math.floor(rial).toLocaleString('fa-IR')+' ریال';
+  }
+}
+function toggleFaq(el){
+  const item=el.parentElement;
+  const wasActive=item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));
+  if(!wasActive)item.classList.add('active');
+}
+function setFilter(btn){
+  document.querySelectorAll('.time-filter').forEach(f=>f.classList.remove('active'));
+  btn.classList.add('active');
+}
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',function(e){
+    e.preventDefault();
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target)target.scrollIntoView({behavior:'smooth'});
+  });
+});
+fetchPrice();fetchStats();fetchChart();
+setInterval(fetchPrice,30000);
+window.addEventListener('resize',fetchChart);
 </script>
 </body>
 </html>
+<script>
+(function(){
+  const token = localStorage.getItem('token');
+  const userStr = localStorage.getItem('user');
+  const btn = document.getElementById('authBtn');
+  if (!btn) return;
+  if (token && userStr) {
+    try {
+      const user = JSON.parse(userStr);
+      btn.textContent = '👤 ' + (user.name || 'کاربر');
+      btn.href = 'wallet.html';
+    } catch(e) {}
+  }
+})();
+</script>

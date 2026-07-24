@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>درباره ما | مثقال زر</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{--gold:#ffd700;--gold-light:#ffec8b;--gold-dark:#b8860b;--bg:#080810;--bg-light:#12121f;--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,215,0,0.08);--text:#fff;--text-muted:#8b8b9e}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+.bg-animation{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:0.3;animation:float 15s infinite;box-shadow:0 0 10px var(--gold)}
+@keyframes float{0%,100%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:0.6}90%{opacity:0.6}100%{transform:translateY(-10vh) rotate(720deg);opacity:0}}
+
+.navbar{background:rgba(8,8,0,0.8);backdrop-filter:blur(20px);padding:0;position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid var(--glass-border)}
+.nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:15px 20px}
+.logo{font-size:1.6rem;color:var(--gold);font-weight:900;text-decoration:none;display:flex;align-items:center;gap:10px;text-shadow:0 0 20px rgba(255,215,0,0.3);transition:transform 0.3s}
+.logo:hover{transform:scale(1.05)}
+.nav-links{display:flex;gap:35px;list-style:none;align-items:center}
+.nav-links a{color:var(--text-muted);text-decoration:none;transition:all 0.3s;font-size:0.9rem;font-weight:500;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:-5px;right:0;width:0;height:2px;background:var(--gold);transition:width 0.3s;border-radius:2px}
+.nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
+.nav-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;padding:10px 28px;border-radius:50px;text-decoration:none;font-weight:800;font-size:0.9rem;transition:all 0.3s;box-shadow:0 4px 15px rgba(255,215,0,0.3)}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(255,215,0,0.5)}
+.menu-toggle{display:none;color:var(--gold);font-size:1.5rem;cursor:pointer}
+
+.hero{margin-top:70px;padding:100px 20px 60px;text-align:center;position:relative}
+.hero h1{font-size:2.8rem;margin-bottom:15px;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold-light),var(--gold));background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shine 3s ease infinite}
+@keyframes shine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-subtitle{color:var(--text-muted);font-size:1.1rem;max-width:600px;margin:0 auto}
+
+.about-section{padding:60px 20px;max-width:1000px;margin:0 auto}
+.about-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:45px;margin-bottom:30px;transition:all 0.4s;box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.about-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.15)}
+.about-icon{width:60px;height:60px;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(184,134,11,0.1));border-radius:0px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--gold);margin-bottom:20px}
+.about-title{font-size:1.4rem;margin-bottom:15px;font-weight:800;color:var(--gold)}
+.about-text{color:var(--text-muted);line-height:2;font-size:0.95rem}
+
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:40px 0}
+.stat-box{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:30px;text-align:center;transition:all 0.4s}
+.stat-box:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.2)}
+.stat-box-number{font-size:2.2rem;font-weight:900;color:var(--gold);text-shadow:0 0 15px rgba(255,215,0,0.2)}
+.stat-box-label{color:var(--text-muted);margin-top:8px;font-size:0.9rem}
+
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-top:40px}
+.value-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:35px;text-align:center;transition:all 0.4s}
+.value-card:hover{transform:translateY(-5px);border-color:rgba(255,215,0,0.15)}
+.value-icon{font-size:2.5rem;color:var(--gold);margin-bottom:15px;transition:transform 0.3s}
+.value-card:hover .value-icon{transform:scale(1.2) rotate(-5deg)}
+.value-title{font-size:1.2rem;font-weight:700;margin-bottom:10px}
+.value-desc{color:var(--text-muted);font-size:0.9rem;line-height:1.7}
+
+.footer{background:var(--bg-light);border-top:1px solid var(--glass-border);padding:50px 20px 30px;text-align:center;position:relative}
+.footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.3}
+.footer-links{display:flex;justify-content:center;gap:35px;margin-bottom:25px;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);text-decoration:none;transition:all 0.3s;font-size:0.95rem}
+.footer-links a:hover{color:var(--gold);transform:translateY(-2px)}
+.footer-social{margin:25px 0}
+.footer-social a{color:var(--text-muted);font-size:1.4rem;margin:0 12px;transition:all 0.3s;display:inline-block}
+.footer-social a:hover{color:var(--gold);transform:translateY(-5px) scale(1.2)}
+.footer p{color:var(--text-muted);font-size:0.85rem;margin-top:20px}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s ease}.reveal.active{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){.nav-links{display:none}.menu-toggle{display:block}.hero h1{font-size:2rem}.about-card{padding:30px 20px}}
+</style>
+</head>
+<body>
+
+<div class="bg-animation" id="particles"></div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="logo"><i class="fas fa-coins"></i> مثقال زر</a>
+    <ul class="nav-links">
+      <li><a href="/">صفحه اصلی</a></li>
+      <li><a href="about.html" style="color:var(--gold)">درباره ما</a></li>
+      <li><a href="/#calculator">ماشین‌حساب</a></li>
+      <li><a href="/#faq">سوالات</a></li>
+    </ul>
+    <a href="/" class="nav-btn">بازگشت به سایت</a>
+    <i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>🎯 داستان مثقال زر</h1>
+  <p class="hero-subtitle">از یک ایده ساده تا بزرگ‌ترین پلتفرم خرید و فروش طلای آنلاین ایران</p>
+</section>
+
+<section class="about-section">
+  <div class="about-card reveal">
+    <div class="about-icon"><i class="fas fa-rocket"></i></div>
+    <h2 class="about-title">ماموریت ما</h2>
+    <p class="about-text">مثقال زر با هدف دموکراتیزه کردن سرمایه‌گذاری در طلا متولد شد. ما معتقدیم هر کسی، با هر میزان سرمایه، باید بتواند در بازار طلا حضور داشته باشد. از یک میلی‌گرم تا کیلوگرم، همه می‌توانند در مثقال زر سرمایه‌گذاری کنند.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box reveal"><div class="stat-box-number">0</div><div class="stat-box-label">کاربر فعال</div></div>
+    <div class="stat-box reveal"><div class="stat-box-number">0</div><div class="stat-box-label">کیلوگرم معامله</div></div>
+    <div class="stat-box reveal"><div class="stat-box-number">0</div><div class="stat-box-label">کیلوگرم تحویل</div></div>
+    <div class="stat-box reveal"><div class="stat-box-number">0</div><div class="stat-box-label">شعبه فعال</div></div>
+  </div>
+
+  <div class="about-card reveal">
+    <div class="about-icon"><i class="fas fa-eye"></i></div>
+    <h2 class="about-title">چشم‌انداز ما</h2>
+    <p class="about-text">ما در مثقال زر تلاش می‌کنیم تا خرید و فروش طلا را به ساده‌ترین و امن‌ترین شکل ممکن برای همه ایرانیان فراهم کنیم. هدف ما تبدیل شدن به بزرگ‌ترین بستر سرمایه‌گذاری طلا در خاورمیانه است.</p>
+  </div>
+
+  <h2 style="text-align:center;font-size:2rem;margin:60px 0 30px;color:var(--gold);font-weight:900">💎 ارزش‌های ما</h2>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-icon"><i class="fas fa-handshake"></i></div>
+      <h3 class="value-title">شفافیت</h3>
+      <p class="value-desc">هیچ چیز پنهانی وجود ندارد. قیمت‌ها، کارمزدها و فرآیندها کاملاً شفاف هستند.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon"><i class="fas fa-lock"></i></div>
+      <h3 class="value-title">امنیت</h3>
+      <p class="value-desc">از پیشرفته‌ترین تکنولوژی‌های امنیتی برای حفاظت از سرمایه شما استفاده می‌کنیم.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon"><i class="fas fa-bolt"></i></div>
+      <h3 class="value-title">سرعت</h3>
+      <p class="value-desc">خرید و فروش آنی طلا بدون معطلی و پیچیدگی‌های اداری.</p>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon"><i class="fas fa-heart"></i></div>
+      <h3 class="value-title">مشتری‌مداری</h3>
+      <p class="value-desc">تیم پشتیبانی ما ۲۴ ساعته آماده پاسخگویی به سوالات شماست.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="about.html">درباره ما</a>
+    <a href="#">تماس با ما</a>
+    <a href="#">قوانین</a>
+    <a href="#">راهنما</a>
+  </div>
+  <div class="footer-social">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-telegram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+  <p>© ۱۴۰۴ مثقال زر - تمامی حقوق محفوظ است</p>
+</footer>
+
+<script>
+function createParticles(){
+  const container=document.getElementById("particles");
+  for(let i=0;i<25;i++){
+    const p=document.createElement("div");p.className="particle";
+    p.style.left=Math.random()*100+"%";p.style.animationDelay=Math.random()*15+"s";
+    p.style.animationDuration=(10+Math.random()*10)+"s";p.style.width=(2+Math.random()*4)+"px";p.style.height=p.style.width;
+    container.appendChild(p);
+  }
+}
+createParticles();
+
+function revealOnScroll(){
+  document.querySelectorAll(".reveal").forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-100)el.classList.add("active");
+  });
+}
+window.addEventListener("scroll",revealOnScroll);revealOnScroll();
+</script>
+</body>
+</html>
