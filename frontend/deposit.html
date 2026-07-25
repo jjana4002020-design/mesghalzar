@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شارژ حساب | مثقال زر</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{--gold:#d4af37;--gold-dark:#b8860b;--bg:#050508;--surface:rgba(255,255,255,0.03);--border:rgba(212,175,55,0.08);--text:#f0f0f5;--text-muted:#6b6b7b;--success:#00d084}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(ellipse at 20% 50%,rgba(212,175,55,0.03) 0%,transparent 50%)}
+.container{width:100%;max-width:420px}
+.logo{text-align:center;margin-bottom:30px;font-size:1.6rem;color:var(--gold);font-weight:900;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:35px;backdrop-filter:blur(20px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.title{text-align:center;font-size:1.4rem;margin-bottom:8px;font-weight:800;color:var(--gold)}
+.subtitle{text-align:center;color:var(--text-muted);font-size:0.9rem;margin-bottom:30px}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;margin-bottom:8px;color:var(--text-muted);font-size:0.9rem}
+.input-group input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,0.2);color:var(--text);font-size:1.1rem;font-family:inherit;transition:all 0.3s}
+.input-group input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,0.1)}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;border:none;border-radius:12px;font-size:1.1rem;font-weight:800;cursor:pointer;margin-top:10px;transition:all 0.3s;font-family:inherit}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(212,175,55,0.4)}
+.btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.msg{padding:12px;border-radius:10px;margin-bottom:20px;font-size:0.9rem;display:none;text-align:center}
+.success{background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.3);color:var(--success)}
+.error{background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);color:#ff4757}
+.quick-amounts{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;justify-content:center}
+.quick-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:8px 16px;border-radius:50px;cursor:pointer;font-family:inherit;font-size:0.85rem;transition:all 0.3s}
+.quick-btn:hover{border-color:var(--gold);color:var(--gold)}
+.footer{text-align:center;margin-top:25px;color:var(--text-muted);font-size:0.85rem}
+.footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="container">
+  <a href="/" class="logo"><i class="fas fa-coins"></i> مثقال زر</a>
+  <div class="card">
+    <h1 class="title">💳 شارژ حساب</h1>
+    <p class="subtitle">مبلغ مورد نظر را وارد کنید</p>
+    
+    <div class="msg" id="msg"></div>
+    
+    <div class="quick-amounts">
+      <button class="quick-btn" onclick="setAmount(1000000)">۱ میلیون</button>
+      <button class="quick-btn" onclick="setAmount(5000000)">۵ میلیون</button>
+      <button class="quick-btn" onclick="setAmount(10000000)">۱۰ میلیون</button>
+      <button class="quick-btn" onclick="setAmount(50000000)">۵۰ میلیون</button>
+    </div>
+    
+    <form id="depositForm">
+      <div class="input-group">
+        <label>مبلغ (ریال)</label>
+        <input type="number" id="amount" placeholder="مثلاً ۱۰۰۰۰۰۰۰" required>
+      </div>
+      <button type="submit" class="btn" id="submitBtn">شارژ حساب</button>
+    </form>
+    
+    <div class="footer">
+      <a href="dashboard.html">بازگشت به داشبورد</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const token=localStorage.getItem('token');
+if(!token){window.location.href='login.html';}
+
+function setAmount(amt){
+  document.getElementById('amount').value=amt;
+}
+
+document.getElementById('depositForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  const msg=document.getElementById('msg');
+  const amount=parseFloat(document.getElementById('amount').value);
+  
+  btn.disabled=true;
+  btn.textContent='در حال شارژ...';
+  msg.style.display='none';
+  
+  try{
+    const res=await fetch('/api/v1/wallet/deposit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body:JSON.stringify({amount})
+    });
+    const data=await res.json();
+    
+    if(data.success){
+      msg.className='msg success';
+      msg.textContent='✅ حساب با موفقیت شارژ شد! در حال انتقال...';
+      msg.style.display='block';
+      setTimeout(()=>window.location.href='dashboard.html',1500);
+    }else{
+      msg.className='msg error';
+      msg.textContent=data.error||'خطا در شارژ';
+      msg.style.display='block';
+      btn.disabled=false;
+      btn.textContent='شارژ حساب';
+    }
+  }catch(err){
+    msg.className='msg error';
+    msg.textContent='خطای شبکه';
+    msg.style.display='block';
+    btn.disabled=false;
+    btn.textContent='شارژ حساب';
+  }
+});
+</script>
+</body>
+</html>
