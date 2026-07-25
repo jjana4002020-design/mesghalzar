@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خرید و فروش طلا | مثقال زر</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{--gold:#d4af37;--gold-dark:#b8860b;--bg:#050508;--surface:rgba(255,255,255,0.03);--border:rgba(212,175,55,0.08);--text:#f0f0f5;--text-muted:#6b6b7b;--success:#00d084;--danger:#ff4757}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(ellipse at 20% 50%,rgba(212,175,55,0.03) 0%,transparent 50%)}
+.navbar{background:rgba(5,5,8,0.85);backdrop-filter:blur(30px);border-bottom:1px solid var(--border);padding:0;position:fixed;width:100%;top:0;z-index:1000}
+.nav-container{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:12px 24px}
+.logo{font-size:1.5rem;color:var(--gold);font-weight:900;text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;transition:all 0.3s;position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;bottom:0;right:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),#f4d03f);transition:width 0.3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.user-menu{display:flex;align-items:center;gap:12px}
+.user-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;color:#000;font-weight:800;font-size:0.9rem;border:2px solid rgba(212,175,55,0.3)}
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:8px 18px;border-radius:50px;cursor:pointer;font-family:inherit;font-size:0.85rem;transition:all 0.3s}
+.logout-btn:hover{border-color:var(--danger);color:var(--danger)}
+.main-content{margin-top:70px;padding:40px 24px;max-width:900px;margin-left:auto;margin-right:auto}
+.tabs{display:flex;gap:12px;margin-bottom:32px;background:var(--surface);padding:6px;border-radius:16px;border:1px solid var(--border)}
+.tab{flex:1;padding:14px;text-align:center;border-radius:12px;cursor:pointer;font-family:inherit;font-size:1rem;font-weight:700;color:var(--text-muted);background:transparent;border:none;transition:all 0.3s}
+.tab.active{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;box-shadow:0 4px 20px rgba(212,175,55,0.3)}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;text-align:center;margin-bottom:28px}
+.price-label{color:var(--text-muted);font-size:0.9rem;margin-bottom:8px}
+.price-value{font-size:2.2rem;font-weight:900;color:var(--gold);direction:ltr}
+.trade-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:32px;margin-bottom:28px}
+.trade-title{font-size:1.3rem;font-weight:800;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.balance-info{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.balance-box{background:#0a0a12;border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center}
+.balance-label{color:var(--text-muted);font-size:0.8rem;margin-bottom:6px}
+.balance-value{font-size:1.2rem;font-weight:800;color:var(--text);direction:ltr}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;margin-bottom:8px;color:var(--text-muted);font-size:0.9rem}
+.input-group input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,0.2);color:var(--text);font-size:1.1rem;font-family:inherit;direction:ltr;text-align:right}
+.input-group input:focus{outline:none;border-color:var(--gold)}
+.quick-amounts{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.quick-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:8px 16px;border-radius:50px;cursor:pointer;font-family:inherit;font-size:0.85rem;transition:all 0.3s}
+.quick-btn:hover{border-color:var(--gold);color:var(--gold)}
+.total-box{background:linear-gradient(135deg,rgba(212,175,55,0.1),rgba(212,175,55,0.02));border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:20px;margin-bottom:24px}
+.total-label{color:var(--text-muted);font-size:0.9rem}
+.total-value{font-size:1.8rem;font-weight:900;color:var(--gold);direction:ltr}
+.submit-btn{width:100%;padding:16px;border:none;border-radius:14px;font-size:1.15rem;font-weight:800;font-family:inherit;cursor:pointer;transition:all 0.3s}
+.btn-buy{background:linear-gradient(135deg,var(--success),#00a86b);color:#fff}
+.btn-buy:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,208,132,0.4)}
+.btn-sell{background:linear-gradient(135deg,var(--danger),#c0392b);color:#fff}
+.btn-sell:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,71,87,0.4)}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed}
+.msg{padding:14px;border-radius:12px;margin-bottom:20px;font-size:0.95rem;display:none;text-align:center}
+.msg-success{background:rgba(0,208,132,0.1);border:1px solid rgba(0,208,132,0.3);color:var(--success)}
+.msg-error{background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);color:var(--danger)}
+.history-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px}
+.history-title{font-size:1.15rem;font-weight:800;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.history-empty{text-align:center;color:var(--text-muted);padding:30px}
+.tx-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.tx-item:last-child{border-bottom:none}
+.tx-left{display:flex;align-items:center;gap:12px}
+.tx-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:0.9rem}
+.tx-buy-icon{background:rgba(0,208,132,0.1);color:var(--success)}
+.tx-sell-icon{background:rgba(255,71,87,0.1);color:var(--danger)}
+.tx-title{font-weight:700;font-size:0.9rem}
+.tx-date{color:var(--text-muted);font-size:0.75rem}
+.tx-amount{font-weight:800;direction:ltr}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{animation:fadeInUp 0.6s ease forwards;opacity:0}
+.delay-1{animation-delay:0.1s}.delay-2{animation-delay:0.2s}.delay-3{animation-delay:0.3s}
+@media(max-width:768px){.nav-links{display:none}.balance-info{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<nav class="navbar"><div class="nav-container">
+<a href="/" class="logo"><i class="fas fa-coins"></i> مثقال زر</a>
+<ul class="nav-links">
+<li><a href="/">صفحه اصلی</a></li>
+<li><a href="dashboard.html">داشبورد</a></li>
+<li><a href="wallet.html">کیف پول</a></li>
+<li><a href="trade.html" class="active">معامله</a></li>
+<li><a href="about.html">درباره ما</a></li>
+</ul>
+<div class="user-menu"><div class="user-avatar" id="userAvatar">م</div>
+<button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+</div></div></nav>
+
+<div class="main-content">
+<div class="tabs reveal">
+<button class="tab active" id="tabBuy" onclick="switchTab(\'buy\')"><i class="fas fa-shopping-cart"></i> خرید طلا</button>
+<button class="tab" id="tabSell" onclick="switchTab(\'sell\')"><i class="fas fa-hand-holding-usd"></i> فروش طلا</button>
+</div>
+
+<div class="price-card reveal delay-1">
+<div class="price-label"><i class="fas fa-chart-line"></i> قیمت لحظه ای هر گرم طلای ۱۸ عیار</div>
+<div class="price-value" id="livePrice">۱۸۸,۰۶۰,۰۰۰</div>
+</div>
+
+<div class="trade-card reveal delay-2">
+<h2 class="trade-title" id="tradeTitle"><i class="fas fa-shopping-cart"></i> خرید طلا</h2>
+<div class="balance-info">
+<div class="balance-box"><div class="balance-label">موجودی ریال</div><div class="balance-value" id="rialBalance">۰</div></div>
+<div class="balance-box"><div class="balance-label">موجودی طلا</div><div class="balance-value" id="goldBalance">۰ میلی گرم</div></div>
+</div>
+<div class="msg" id="msg"></div>
+<div class="input-group"><label>مقدار طلا (میلی گرم)</label><input type="number" id="amountMg" placeholder="مثلا ۵۳۲" oninput="calculateTotal()"></div>
+<div class="quick-amounts" id="quickBuy">
+<button class="quick-btn" onclick="setAmount(100)">۱۰۰ mg</button>
+<button class="quick-btn" onclick="setAmount(500)">۵۰۰ mg</button>
+<button class="quick-btn" onclick="setAmount(1000)">۱ گرم</button>
+<button class="quick-btn" onclick="setAmount(5000)">۵ گرم</button>
+</div>
+<div class="quick-amounts" id="quickSell" style="display:none">
+<button class="quick-btn" onclick="setAmount(100)">۱۰۰ mg</button>
+<button class="quick-btn" onclick="setAmount(500)">۵۰۰ mg</button>
+<button class="quick-btn" onclick="setAmount(1000)">۱ گرم</button>
+<button class="quick-btn" onclick="setAmount(5000)">۵ گرم</button>
+</div>
+<div class="total-box"><div class="total-label">مبلغ کل</div><div class="total-value" id="totalPrice">۰ تومان</div></div>
+<button class="submit-btn btn-buy" id="submitBtn" onclick="executeTrade()"><i class="fas fa-check-circle"></i> خرید طلا</button>
+</div>
+
+<div class="history-card reveal delay-3">
+<h3 class="history-title"><i class="fas fa-history"></i> تاریخچه معاملات</h3>
+<div id="historyContent"><div class="history-empty">در حال بارگذاری...</div></div>
+</div>
+</div>
+
+<script>
+const token=localStorage.getItem("token");
+if(!token){window.location.href="login.html";}
+let currentTab="buy",currentPrice=188060000,userData={};
+const user=JSON.parse(localStorage.getItem("user")||"{}");
+if(user.name){document.getElementById("userAvatar").textContent=user.name.charAt(0);}
+
+async function loadData(){
+try{
+const[meRes,priceRes]=await Promise.all([
+fetch("/api/v1/auth/me",{headers:{"Authorization":"Bearer "+token}}),
+fetch("/api/v1/trade/price")
+]);
+const meData=await meRes.json(),priceData=await priceRes.json();
+if(meData.user){
+userData=meData.user;
+document.getElementById("rialBalance").textContent=Math.floor(meData.user.rial_balance||0).toLocaleString("fa-IR")+" تومان";
+document.getElementById("goldBalance").textContent=Math.floor(meData.user.gold_balance||0).toLocaleString("fa-IR")+" میلی گرم";
+}
+if(priceData.success){currentPrice=priceData.price_per_gram;document.getElementById("livePrice").textContent=currentPrice.toLocaleString("fa-IR");}
+loadHistory();
+}catch(e){console.error(e)}
+}
+loadData();
+
+function switchTab(tab){
+currentTab=tab;
+document.getElementById("tabBuy").classList.toggle("active",tab==="buy");
+document.getElementById("tabSell").classList.toggle("active",tab==="sell");
+document.getElementById("quickBuy").style.display=tab==="buy"?"flex":"none";
+document.getElementById("quickSell").style.display=tab==="sell"?"flex":"none";
+const title=document.getElementById("tradeTitle"),btn=document.getElementById("submitBtn");
+if(tab==="buy"){title.innerHTML=\'<i class="fas fa-shopping-cart"></i> خرید طلا\';btn.className="submit-btn btn-buy";btn.innerHTML=\'<i class="fas fa-check-circle"></i> خرید طلا\';}
+else{title.innerHTML=\'<i class="fas fa-hand-holding-usd"></i> فروش طلا\';btn.className="submit-btn btn-sell";btn.innerHTML=\'<i class="fas fa-check-circle"></i> فروش طلا\';}
+calculateTotal();
+}
+
+function setAmount(mg){document.getElementById("amountMg").value=mg;calculateTotal();}
+function calculateTotal(){
+const mg=parseFloat(document.getElementById("amountMg").value)||0;
+document.getElementById("totalPrice").textContent=Math.floor((mg/1000)*currentPrice).toLocaleString("fa-IR")+" تومان";
+}
+
+async function executeTrade(){
+const btn=document.getElementById("submitBtn"),msg=document.getElementById("msg"),amount=parseFloat(document.getElementById("amountMg").value);
+if(!amount||amount<=0){msg.className="msg msg-error";msg.textContent="مقدار را وارد کنید";msg.style.display="block";return;}
+btn.disabled=true;btn.innerHTML=\'<i class="fas fa-spinner fa-spin"></i> در حال پردازش...\';msg.style.display="none";
+try{
+const endpoint=currentTab==="buy"?"/api/v1/trade/buy":"/api/v1/trade/sell";
+const res=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},body:JSON.stringify({amount_mg:amount,price_per_gram:currentPrice})});
+const data=await res.json();
+if(data.success){
+msg.className="msg msg-success";msg.textContent=data.message+" ✅";msg.style.display="block";
+document.getElementById("amountMg").value="";calculateTotal();loadData();loadHistory();
+}else{msg.className="msg msg-error";msg.textContent=data.error||"خطا در معامله";msg.style.display="block";}
+}catch(err){msg.className="msg msg-error";msg.textContent="خطای شبکه";msg.style.display="block";}
+finally{
+btn.disabled=false;
+btn.innerHTML=currentTab==="buy"?\'<i class="fas fa-check-circle"></i> خرید طلا\':\'<i class="fas fa-check-circle"></i> فروش طلا\';
+}
+}
+
+async function loadHistory(){
+try{
+const res=await fetch("/api/v1/trade/history",{headers:{"Authorization":"Bearer "+token}});
+const data=await res.json();const container=document.getElementById("historyContent");
+if(!data.transactions||data.transactions.length===0){
+container.innerHTML=\'<div class="history-empty"><i class="fas fa-inbox" style="font-size:2rem;margin-bottom:10px;display:block"></i>هنوز معامله ای انجام نشده</div>\';return;
+}
+let html=\'<div>\';
+data.transactions.forEach(tx=>{
+const isBuy=tx.type==="buy";
+html+=\'<div class="tx-item"><div class="tx-left"><div class="tx-icon \'+(isBuy?"tx-buy-icon":"tx-sell-icon")+\'"><i class="fas \'+(isBuy?"fa-arrow-down":"fa-arrow-up")+\'"></i></div><div><div class="tx-title">\'+(isBuy?"خرید طلا":"فروش طلا")+\'</div><div class="tx-date">\'+new Date(tx.created_at).toLocaleDateString("fa-IR")+\'</div></div></div><div style="text-align:left"><div class="tx-amount" style="color:\'+(isBuy?"var(--success)":"var(--danger)")+\'">\'+(isBuy?"+":"-")+Math.floor(tx.amount_mg).toLocaleString("fa-IR")+\' mg</div><div class="tx-amount" style="font-size:0.8rem;color:var(--text-muted)">\'+Math.floor(tx.total_rial).toLocaleString("fa-IR")+\' تومان</div></div></div>\';
+});
+html+=\'</div>\';container.innerHTML=html;
+}catch(e){document.getElementById("historyContent").innerHTML=\'<div class="history-empty">خطا در بارگذاری</div>\';}
+}
+
+function logout(){localStorage.removeItem("token");localStorage.removeItem("user");window.location.href="/";}
+const urlParams=new URLSearchParams(window.location.search);
+if(urlParams.get("tab")==="sell") switchTab("sell");
+</script>
+</body>
+</html>
